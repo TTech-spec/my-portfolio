@@ -85,7 +85,11 @@ nav.nav-scrolled {
     background: rgba(14, 14, 26, 0.95);
     animation: navSlideDown 0.5s ease forwards;
 }
-
+.logos{
+    width: 9%;
+    height: 80px;
+    border-radius:50%;
+}
 @keyframes navSlideDown {
     0% {
         transform: translateY(-100%);
