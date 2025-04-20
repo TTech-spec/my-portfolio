@@ -87,7 +87,7 @@ nav.nav-scrolled {
 }
 .logos{
     width: 9%;
-    height: 80px;
+    height: 50px;
     border-radius:50%;
 }
 @keyframes navSlideDown {
@@ -1459,7 +1459,7 @@ body {
     --secondary-color: #2ecc71;       /* Emerald green */
     --accent-color: #9b59b6;          /* Amethyst purple */
     --background-color: #f0f9ff;      /* Very light blue */
-    --text-color: #2c3e50;            /* Dark slate */
+    --text-color: #2f5070;            /* Dark slate */
     --card-bg: #ffffff;               /* White */
     --nav-bg: rgba(255, 255, 255, 0.95);
     --border-color: #e0e0e0;
