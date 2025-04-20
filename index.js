@@ -197,3 +197,30 @@ function sendToWhatsApp() {
   
     window.open(whatsappURL, '_blank');
   }
+
+// Add this at the top of your JS
+const MIN_LOADER_DURATION = 3000; // 3 seconds (adjust as needed)
+let loaderStartTime = Date.now();
+
+window.addEventListener('load', function() {
+  const loader = document.querySelector('.cyber-loader');
+  const elapsed = Date.now() - loaderStartTime;
+  const remainingTime = Math.max(MIN_LOADER_DURATION - elapsed, 0);
+
+  // Wait for remaining time or immediate hide if already past duration
+  setTimeout(() => {
+    // Start fade-out animation
+    loader.style.opacity = '0';
+    
+    // Remove loader after fade-out completes
+    setTimeout(() => {
+      loader.style.display = 'none';
+      document.body.style.overflow = 'visible';
+    }, 800);
+  }, remainingTime);
+});
+
+// Your existing DOMContentLoaded code (should be separate)
+document.addEventListener('DOMContentLoaded', function() {
+  // ... keep all your existing code ...
+});
