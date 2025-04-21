@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.style.cursor = 'pointer';
     });
 });
+
 function sendToWhatsApp() {
     const firstname = document.getElementById('firstname').value;
     const lastname = document.getElementById('lastname').value;
