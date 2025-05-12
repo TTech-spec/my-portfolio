@@ -3,373 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adekola Timothy</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="./index.js" defer></script>
 </head>
-<body><div class="overlay"></div>
-    <!-- Add this right after opening <body> tag -->
-<div class="cyber-loader">
-    <div class="cyber-spinner">
-      <div class="core"></div>
-      <div class="ring"></div>
-      <div class="glow"></div>
-      <div class="dots">
-        <div class="dot pulse-1"></div>
-        <div class="dot pulse-2"></div>
-        <div class="dot pulse-3"></div>
-      </div>
-    </div>
-    <div class="loading-text">BOT.TECH</div>
-  </div>
-    <nav>
-        <img src="./images/Black and Blue Minimalist Ai tech Logo.svg" alt="" width="10%" class="logos">
-
-        <div class="content">
-            <li>services</li>
-            <li>works</li>
-            <li>skills</li>
-            <li>testimonials</li>
-            <li>contact</li>
-            <button id="hire">Hire Me!</button>
+<body>
+    <div class="cyber-loader">
+        <div class="cyber-spinner">
+            <div class="core"></div>
+            <div class="ring"></div>
+            <div class="glow"></div>
+            <div class="dots">
+                <div class="dot pulse-1"></div>
+                <div class="dot pulse-2"></div>
+                <div class="dot pulse-3"></div>
+            </div>
         </div>
-  
-<div class="nav-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <nav>
+        <img src="./images/Black and Blue Minimalist Ai tech Logo.svg" alt="Logo" class="logos">
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="content">
+            <li><a href="#first-section">Home</a></li>
+            <li><a href="#second">Services</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact-form-section">Contact</a></li>
+        </ul>
+        <button id="hire">Hire Me</button>
+        <button id="toggleMode"><i class="fas fa-adjust"></i></button>
     </nav>
-    
+
+    <div class="overlay"></div>
+
     <section id="first-section">
-       
-        <div class="grid-pattern"></div>
-        
-     
-        <div class="hello-text">Hi</div>
-        
         <div class="floating-circle circle-1"></div>
         <div class="floating-circle circle-2"></div>
         <div class="floating-circle circle-3"></div>
-        
-        <center>
-            <div class="flex-contanier">
-                <div class="first-text">
-                    <h2 id="timothy">I am Timothy</h2>
-                    <h1 id="next">Next-Level Web Developer.</h1>
-                    <p id="first-p">I break down complex user experience problems to create integrity-focused solutions that connect billions of people</p>
-                    <button id="download">download cv <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
-                </div>
-                <div class="tim">
-                    <img src="./images/tim.jpg" alt="Timothy's profile">
-                </div>
+        <div class="hello-text">Hello</div>
+        <div class="flex-contanier">
+            <div class="first-text">
+                <h1 id="timothy">Hi, I’m Timothy</h1>
+                <h2 id="next">A Web Developer & Designer</h2>
+                <p id="first-p">I create stunning websites and designs with a focus on performance and user experience. Let’s build something amazing together!</p>
+                <button id="download">Download CV <i class="fas fa-download"></i></button>
             </div>
-        </center>
+            <div class="tim">
+                <img src="./images/tim.jpg" alt="Timothy">
+            </div>
+        </div>
     </section>
-    <section id="services-section">
-       <center> <div id="second">
-        <div class="service">
-       <center><h1 class="quality">My quality Service</h1></center>
-      <center><p class="quality-p">We put your ideas and thus your wishes in the form of a unique web project that inspires you and you customers.</p></center> 
-    </div>
-      <div>
-        <div class="web"><h1>01 web developer</h1>  <span class="web-innertext">Ensure your website look so great any device, with  any layout  that adapt to any screen sizes seamlessly </span> </div>
-        <hr>
-        <div class="web"><h1>02 Logo designer</h1>  <span class="web-innertext">Ensure your website look so great any device, with  any layout  that adapt to any screen sizes seamlessly </span> </div>
-        <hr>
-        <div class="web"><h1>03 Digital Marketing</h1>  <span class="web-innertext">Ensure your website look so great any device, with  any layout  that adapt to any screen sizes seamlessly </span> </div>
-      </div>
-    </div></center>
-    </section>
-    <section>
-        <div class="Recent">
-       <center><h1 class="Recent">My Recent Work</h1></center> 
-       <center><p>We put your ideas and thus your wishes in the form of a unique web project that inspires you and you customers.</p></center>
-    </div>
 
-    <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="websites">Websites</button>
-        <button class="filter-btn" data-filter="branding">Branding</button>
-        <button class="filter-btn" data-filter="apps">Apps</button>
-    </div>
-<center><div class="website-showcase">
-    <div class="first-img portfolio-item" data-category="websites">
-        <img src="./images/Screenshot 2025-02-15 140414.png" alt="Website Design">
-      </div>
-      <div class="first-img portfolio-item" data-category="websites">
-        <img src="./images/Screenshot 2025-02-15 140414.png" alt="Website Design">
-      </div>
-      <div class="first-img portfolio-item" data-category="branding">
-        <img src="./images/default.png" alt="Logo Design">
-    </div>
-</div></center>
+    <section id="second">
+      <center> <h2 class="quality" >Quality Services</h2></center> 
+    <center>    <p class="quality-p">I offer a range of services to help bring your digital ideas to life with cutting-edge technology and creativity.</p></center>
+        <div class="web">
+            <p class="web-innertext">Web Development</p>
+            <i class="fas fa-laptop-code"></i>
+        </div>
+        <div class="web">
+            <p class="web-innertext">Logo Design</p>
+            <i class="fas fa-paint-brush"></i>
+        </div>
+        <div class="web">
+            <p class="web-innertext">Mobile Apps</p>
+            <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="web">
+            <p class="web-innertext">logo-design</p>
+            <i class="fas fa-search"></i>
+        </div>
+        <hr>
     </section>
-    <section class="skills-section">
-        <h1 class="skills">Skills</h1>
-        <p class="inspires">We put your ideas and thus your wishes in the form of a unique web project that inspires you and you customers.</p>
-        
+
+    <section id="works">
+     <center><h1 class="Recent">Recent Works</h1></center>
+      <center>  <p class="Recent-p">Check out some of my latest projects that showcase my skills and creativity.</p></center>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+            <button class="filter-btn" data-filter="app">App</button>
+        </div>
+        <div class="website-showcase">
+            <div class="portfolio-item web">
+                <img src="./images/Screenshot 2025-02-15 140414.png" alt="Project 1">
+            </div>
+            <div class="portfolio-item design">
+                <img src="./images/Screenshot 2025-04-30 155353.png" alt="Project 2">
+            </div>
+            <div class="portfolio-item app">
+                <img src="./images/default.png" alt="Project 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2 class="skills">My Skills</h2>
+        <p class="inspires">What inspires me to create amazing digital experiences every day.</p>
         <div id="skills-container">
             <div class="skill-box">
-                <div class="skill-logo">
-                    <img src="./images/html.png" alt="HTML">
-                    <div class="skill-percent">99%</div>
-                </div>
-                <span class="skill-name">Html</span>
+                <div class="skill-logo"><img src="./images/html.png" alt="HTML"></div>
+                <div class="skill-percent">95%</div>
+                <div class="skill-name">HTML</div>
             </div>
-            
             <div class="skill-box">
-                <div class="skill-logo">
-                    <img src="./images/css-3.png" alt="CSS">
-                    <div class="skill-percent">99%</div>
-                </div>
-                <span class="skill-name">Css</span>
+                <div class="skill-logo"><img src="./images/css-3.png" alt="CSS"></div>
+                <div class="skill-percent">90%</div>
+                <div class="skill-name">CSS</div>
             </div>
-            
             <div class="skill-box">
-                <div class="skill-logo">
-                    <img src="./images/atom.png" alt="React">
-                    <div class="skill-percent">80%</div>
-                </div>
-                <span class="skill-name">React</span>
+                <div class="skill-logo"><img src="./images/technology.png" alt="JavaScript"></div>
+                <div class="skill-percent">85%</div>
+                <div class="skill-name">JavaScript</div>
             </div>
-            
             <div class="skill-box">
-                <div class="skill-logo">
-                    <img src="./images/technology.png" alt="JavaScript">
-                    <div class="skill-percent">79%</div>
-                </div>
-                <span class="skill-name">JavaScript</span>
+                <div class="skill-logo"><img src="./images/atom.png" alt="React"></div>
+                <div class="skill-percent">80%</div>
+                <div class="skill-name">React</div>
             </div>
-            
             <div class="skill-box">
-                <div class="skill-logo">
-                    <img src="./images/logo-design.png" alt="Logo Design">
-                    <div class="skill-percent">99%</div>
-                </div>
-                <span class="skill-name">Logo Design</span>
+                <div class="skill-logo"><img src="./images/logo-design.png" alt="Node.js"></div>
+                <div class="skill-percent">75%</div>
+                <div class="skill-name">Logo Design</div>
             </div>
         </div>
     </section>
 
-    <button class="toggle-mode" id="toggleMode">🌙</button>
-    <div class="container">
-        <h1 class="section-heading">My Client's Stories</h1>
-        <p class="section-subheading">Empowering people in new digital journeys with my super services</p>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="company-logo">TECH</div>
-                    <img src="./images/Sterling K_ Brown Shares His _There Can Be Only One_ Theory of Black Actor Representation on TV.jpeg" alt="Client" class="client-image">
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-heading">Testimonials</h2>
+            <p class="section-subheading">What my clients say about my work.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="company-logo">TechCorp</div>
+                        <img src="./images/client1.jpg" alt="Client 1" class="client-image">
+                    </div>
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">Timothy delivered an outstanding website that exceeded our expectations. Highly recommend!</p>
+                    <div class="client-name">Adekola Matthew</div>
+                    <div class="client-position">CEO, TechCorp</div>
                 </div>
-                <div class="quote-icon">❝</div>
-                <p class="testimonial-text" style="color: white;">"Daniel is a professional Website developer and logo designer he really helps my business by providing value to my business."</p>
-                <div class="client-info">
-                    <br>
-                    <h3 class="client-name">Daniel</h3>
-                    <br>
-                    <p class="client-position">Senior Software Dev and a Logo designer, Cosmic</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="company-logo">DesignHub</div>
+                        <img src="./images/Sterling K_ Brown Shares His _There Can Be Only One_ Theory of Black Actor Representation on TV.jpeg" alt="Client 2" class="client-image">
+                    </div>
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">Simpl delivered a fantastic logo! Clean, memorable, and perfectly captured our brand essence. Highly recommend</p>
+                    <div class="client-name"></div>
+                    <div class="client-position">Creative Director, DesignHub</div>
                 </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="company-logo">REAL ESTATE</div>
-                    <img src="./images/Sterling K_ Brown Shares His _There Can Be Only One_ Theory of Black Actor Representation on TV.jpeg" alt="Client" class="client-image">
-                </div>
-                <div class="quote-icon">❝</div>
-                <p class="testimonial-text" style="color: white;">" Matthew is a professional website developer he really helps my business by providing value to my business."</p>
-                <div class="client-info">
-                    <br>
-                    <h3 class="client-name">Adekola Matthew</h3>
-                    <br>
-                    <p class="client-position">CEO and Content Creator, Theme</p>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="company-logo">WEBFLOW</div>
-                    <img src="./images/Sterling K_ Brown Shares His _There Can Be Only One_ Theory of Black Actor Representation on TV.jpeg" alt="Client" class="client-image">
-                </div>
-                <div class="quote-icon">❝</div>
-                <p class="testimonial-text" style="color: white;">"Working with this developer was a game-changer for our online presence. The attention to detail and creativity exceeded our expectations."</p>
-                <div class="client-info">
-                    <br>
-                    <h3 class="client-name">Amazing Hope</h3>
-                    <br>
-                    <p class="client-position">Website Developer, Webflow</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="company-logo">AppDev</div>
+                        <img src="./images/hope.jpg" alt="Client 3" class="client-image">
+                    </div>
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="testimonial-text">Tim’s SEO skills boosted our traffic significantly. Amazing service!</p>
+                    <div class="client-name">Amazing Hope</div>
+                    <div class="client-position">Marketing Lead, AppDev</div>
                 </div>
             </div>
         </div>
-    </div>
-    <section id="contact-section">
-        <div class="grid-pattern contact-bg"></div>
+    </section>
+
+    <section id="contact-form-section">
         <div class="floating-circle circle-contact-1"></div>
         <div class="floating-circle circle-contact-2"></div>
-        
-        <div class="container">
-          <h2 class="section-heading">Get In Touch</h2>
-          <p class="section-subheading">Have a project in mind? Feel free to reach out and let's create something amazing together.</p>
-          
-          <div class="contact-container">
+        <div class="contact-container">
             <div class="contact-info">
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-details">
+                        <h3>Phone</h3>
+                        <p>+234 8147061837</p>
+                    </div>
                 </div>
-                <div class="contact-details">
-                  <h3>Location</h3>
-                  <p>NIGERIA, Lagos State</p>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>adekolatimothy115@gmail.com</p>
+                    </div>
                 </div>
-              </div>
-              
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fas fa-envelope"></i>
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-details">
+                        <h3>Location</h3>
+                        <p>NIGERIA, Lagos State </p>
+                    </div>
                 </div>
-                <div class="contact-details">
-                  <h3>Email</h3>
-                  <p>adekolatimothy115@gmail.com</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
                 </div>
-              </div>
-              
-              <div class="contact-card">
-                <div class="contact-icon">
-                  <i class="fas fa-phone-alt"></i>
-                </div>
-                <div class="contact-details">
-                  <h3>Phone</h3>
-                  <p>+234 8147061837</p>
-                </div>
-              </div>
-              
-              <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-              </div>
             </div>
-            
-            <form id="contact-form" action="" method="POST">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="firstname">Firstname</label>
-                  <input type="text" id="firstname" name="firstname" placeholder="Enter your firstname" required>
-                  <div class="input-focus-effect"></div>
+            <form id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="input-focus-effect"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="input-focus-effect"></div>
+                    </div>
                 </div>
-                
                 <div class="form-group">
-                  <label for="lastname">Lastname</label>
-                  <input type="text" id="lastname" name="lastname" placeholder="Enter your lastname" required>
-                  <div class="input-focus-effect"></div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <div class="input-focus-effect"></div>
                 </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="company">Company Name</label>
-                <input type="text" id="company" name="company" placeholder="Enter your company name">
-                <div class="input-focus-effect"></div>
-              </div>
-              
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                <div class="input-focus-effect"></div>
-              </div>
-              
-              <div class="form-group">
-                <label for="contact">Phone</label>
-                <input type="tel" id="contact" name="contact" placeholder="Enter your phone number">
-                <div class="input-focus-effect"></div>
-              </div>
-              
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project"></textarea>
-                <div class="input-focus-effect"></div>
-              </div>
-              
-              <button type="button" id="submit-btn" onclick="sendToWhatsApp()">
-                <span>Send Message</span>
-                <div class="button-effect"></div>
-              </button>
+                <button type="submit" id="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
-          </div>
         </div>
-      </section>
-      <footer class="footer">
-        <div class="footer-background">
-            <div class="orb"></div>
-            <div class="orb"></div>
-            <div class="orb"></div>
-        </div>
-        
+    </section>
+
+    <footer class="footer">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
         <div class="footer-container">
             <div class="footer-section">
-                <h3 class="footer-heading">About Us</h3>
-                <p class="footer-text">Delivering exceptional digital solutions that empower businesses to thrive in the modern landscape. Our expertise transforms visions into reality.</p>
+                <h3 class="footer-heading">About Me</h3>
+                <p class="footer-text">Passionate web developer and designer creating innovative digital solutions.</p>
                 <div class="social-icons">
-                    <a href="#" class="social-icon">in</a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-            
             <div class="footer-section">
-                <h3 class="footer-heading">Our Services</h3>
+                <h3 class="footer-heading">Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Mobile Applications</a></li>
+                    <li><a href="#first-section">Home</a></li>
+                    <li><a href="#second">Services</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact-form-section">Contact</a></li>
                 </ul>
             </div>
-            
             <div class="footer-section">
-                <h3 class="footer-heading">Contact Us</h3>
+                <h3 class="footer-heading">Contact</h3>
                 <ul class="contact-info">
-                    <li>
-                        <span class="contact-icon">📍</span>
-                        <span>NIGERIA, Lagos State</span>
-                    </li>
-                    <li>
-                        <span class="contact-icon">📞</span>
-                        <span>+234 8147061837</span>
-                    </li>
-                    <li>
-                        <span class="contact-icon">✉️</span>
-                        <span>adekolatimothy115@gamil.com</span>
-                    </li>
-                    <li>
-                        <span class="contact-icon">🕒</span>
-                        <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
-                    </li>
+                    <li><i class="fas fa-phone contact-icon"></i> +234 8147061837</li>
+                    <li><i class="fas fa-envelope contact-icon"></i> adekolatimothy115@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt contact-icon"></i> NIGERIA, Lagos State</li>
                 </ul>
             </div>
-            
             <div class="footer-section">
                 <h3 class="footer-heading">Newsletter</h3>
-                <p class="footer-text">Subscribe to our newsletter for the latest insights on digital transformation and industry trends.</p>
+                <p class="footer-text">Stay updated with my latest projects!</p>
                 <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <input type="email" class="newsletter-input" placeholder="Your Email" required>
                     <button type="submit" class="newsletter-button">Subscribe</button>
                 </form>
             </div>
         </div>
-        
         <div class="footer-bottom">
-            <p>&copy; 2025 BOT.TECH. All rights reserved.</p>
+            <p>&copy; 2025 Timothy. All rights reserved.</p>
         </div>
     </footer>
 
-  
-
-    <button class="back-to-top" id="backToTop">↑</button>
-
-
-    
-    <script src="./index.js"></script>
+    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 </body>
 </html>
