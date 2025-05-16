@@ -8,42 +8,42 @@
 /* Tech-inspired color scheme */
 :root {
     /* Dark Mode Colors */
-    --primary: #6200ee; /* Purple for buttons and accents */
-    --primary-light: #9f44ff; /* Lighter purple for hover effects */
-    --primary-dark: #3700b3; /* Darker purple */
-    --secondary: #03dac6; /* Teal for highlights */
-    --accent: #00b4d8; /* Blue for accents */
-    --text-dark: #141414; /* Dark text for light mode */
-    --text-light: #f8f8ff; /* Light text for dark mode */
-    --bg-light: #121212; /* Dark background */
-    --bg-medium: #1e1e30; /* Medium dark background */
-    --bg-dark: #0a0a16; /* Very dark background */
-    --glow-color: rgba(158, 87, 255, 0.6); /* Glow effect */
-    --card-bg: #1e1e1e; /* Dark card background */
-    --nav-bg: rgba(30, 30, 30, 0.95); /* Dark navigation background */
-    --border-color: #333333; /* Dark border */
-    --button-gradient: linear-gradient(135deg, #64b5f6 0%, #0d47a1 100%); /* Button gradient */
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Shadow */
+    --primary: #6200ee;
+    --primary-light: #9f44ff;
+    --primary-dark: #3700b3;
+    --secondary: #03dac6;
+    --accent: #00b4d8;
+    --text-dark: #141414;
+    --text-light: #f8f8ff;
+    --bg-light: #121212;
+    --bg-medium: #1e1e30;
+    --bg-dark: #0a0a16;
+    --glow-color: rgba(158, 87, 255, 0.6);
+    --card-bg: #1e1e1e;
+    --nav-bg: rgba(30, 30, 30, 0.95);
+    --border-color: #333333;
+    --button-gradient: linear-gradient(135deg, #64b5f6 0%, #0d47a1 100%);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Light Mode Colors */
 .light-mode {
-    --primary: #3f51b5; /* Blue for buttons */
-    --primary-light: #757de8; /* Lighter blue for hover */
-    --primary-dark: #002984; /* Darker blue */
-    --secondary: #26a69a; /* Greenish-teal for highlights */
-    --accent: #4fc3f7; /* Light blue accent */
-    --text-dark: #212121; /* Dark text */
-    --text-light: #757575; /* Lighter text for secondary text */
-    --bg-light: #f5f5f5; /* Light gray background */
-    --bg-medium: #e0e0e0; /* Medium gray background */
-    --bg-dark: #ffffff; /* White background */
-    --glow-color: rgba(117, 125, 232, 0.4); /* Softer glow */
-    --card-bg: #ffffff; /* White card background */
-    --nav-bg: rgba(255, 255, 255, 0.95); /* White navigation background */
-    --border-color: #e0e0e0; /* Light border */
-    --button-gradient: linear-gradient(135deg, #3f51b5 0%, #757de8 100%); /* Light mode button gradient */
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Lighter shadow */
+    --primary: #3f51b5;
+    --primary-light: #757de8;
+    --primary-dark: #002984;
+    --secondary: #26a69a;
+    --accent: #4fc3f7;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --bg-light: #f5f5f5;
+    --bg-medium: #e0e0e0;
+    --bg-dark: #ffffff;
+    --glow-color: rgba(117, 125, 232, 0.4);
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --border-color: #e0e0e0;
+    --button-gradient: linear-gradient(135deg, #3f51b5 0%, #757de8 100%);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 /* Subtle background pattern for light mode */
@@ -461,7 +461,7 @@ nav a {
     padding: 12px 25px;
     border-radius: 15px;
     background: var(--button-gradient);
-    color: white;
+    color: var(--text-light);
     cursor: pointer;
     border: none;
     font-size: 17px;
@@ -800,9 +800,11 @@ hr {
     color: transparent;
     text-align: center;
 }
-.Recent-p{
+
+.Recent-p {
     font-size: 20px;
 }
+
 .Recent h1 {
     font-size: 90%;
 }
@@ -1255,7 +1257,7 @@ hr {
     gap: 50px;
     margin-top: 50px;
     width: 90%;
-    max-width: 1200px; /* Match navbar max-width */
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1346,7 +1348,7 @@ hr {
 }
 
 #contact-form {
-    flex: 1; /* Reduced from 1.5 to 1 to balance with .contact-info */
+    flex: 1;
     background: var(--card-bg);
     border-radius: 20px;
     padding: 40px;
@@ -1835,10 +1837,6 @@ hr {
         flex-direction: column;
     }
 
-    #contact-form {
-        flex: 1;
-    }
-
     .portfolio-item {
         flex: 0 0 calc(50% - 20px);
     }
@@ -1847,11 +1845,15 @@ hr {
 @media (max-width: 768px) {
     nav {
         padding: 15px 3%;
+        z-index: 1100; /* Ensure nav is above all */
+    }
+
+    .nav-toggle {
+        display: flex;
+        z-index: 1200; /* Above sidebar and overlay */
     }
 
     .content {
-        display: none;
-        flex-direction: column;
         position: fixed;
         top: 0;
         right: 0;
@@ -1859,19 +1861,66 @@ hr {
         height: 100%;
         background: var(--nav-bg);
         padding: 80px 20px;
+        display: none;
+        flex-direction: column;
         align-items: flex-start;
         gap: 20px;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1100; /* Above overlay */
+        opacity: 0;
     }
 
     .content.active {
         display: flex;
         transform: translateX(0);
+        opacity: 1;
     }
 
-    .nav-toggle {
-        display: flex;
+    .content li {
+        width: 100%;
+    }
+
+    .content li a {
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .light-mode .content li a {
+        color: var(--text-dark);
+    }
+
+    .content li a:hover {
+        color: var(--primary-light);
+    }
+
+    #hire {
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--text-light);
+        background: var(--button-gradient);
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1101; /* Ensure button is above sidebar */
+    }
+
+    .light-mode #hire {
+        color: var(--text-light);
+    }
+
+    #hire:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(158, 87, 255, 0.3);
     }
 
     .overlay {
@@ -1880,11 +1929,16 @@ hr {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
+        background: linear-gradient(to bottom, rgba(10, 10, 22, 0.8), rgba(30, 30, 48, 0.9));
+        backdrop-filter: blur(5px);
+        z-index: 1000; /* Below sidebar */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .light-mode .overlay {
+        background: linear-gradient(to bottom, rgba(200, 200, 200, 0.8), rgba(230, 230, 230, 0.9));
     }
 
     .overlay.active {

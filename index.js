@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     const navLinks = document.querySelectorAll('nav a');
+    const skillPercents = document.querySelectorAll('.skill-percent');
+    const skillsSection = document.querySelector('#skills');
+    const contactForm = document.querySelector('#contact-form');
+    const submitBtn = document.querySelector('#submit-btn');
+    const websiteShowcase = document.querySelector('.website-showcase');
 
+    // Preloader
     if (loader) {
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -78,20 +84,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filter = button.getAttribute('data-filter');
 
-            portfolioItems.forEach(item => {
-                if (filter === 'all' || item.classList.contains(filter)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
+            // Clear current content
+            websiteShowcase.innerHTML = '';
+
+            // Dynamically add content based on filter
+            if (filter === 'all') {
+                // Restore original portfolio items
+                portfolioItems.forEach(item => {
+                    websiteShowcase.appendChild(item.cloneNode(true));
+                });
+            } else if (filter === 'web') {
+                // Show Web image (using existing project image)
+                const webDiv = document.createElement('div');
+                webDiv.className = 'portfolio-item web';
+                webDiv.innerHTML = '<img src="./images/Screenshot 2025-02-15 140414.png" alt="Web Project">';
+                websiteShowcase.appendChild(webDiv);
+            } else if (filter === 'design') {
+                // Show Design image (using existing project image)
+                const designDiv = document.createElement('div');
+                designDiv.className = 'portfolio-item design';
+                designDiv.innerHTML = '<img src="./images/Screenshot 2025-04-30 155353.png" alt="Design Project">';
+                websiteShowcase.appendChild(designDiv);
+            } else if (filter === 'app') {
+                // Show App image (using existing project image)
+                const appDiv = document.createElement('div');
+                appDiv.className = 'portfolio-item app';
+                appDiv.innerHTML = '<img src="./images/default.png" alt="App Project">';
+                websiteShowcase.appendChild(appDiv);
+            }
         });
     });
 
     // Contact Form Submission
-    const contactForm = document.querySelector('#contact-form');
-    const submitBtn = document.querySelector('#submit-btn');
-
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         submitBtn.disabled = true;
@@ -161,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 100);
             }
 
-            // Close mobile menu if open
             if (navContent.classList.contains('active')) {
                 navToggle.classList.remove('active');
                 navContent.classList.remove('active');
@@ -187,24 +210,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Apply animations to sections and their children
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
-        // Add fade-in to section headings
         const heading = section.querySelector('h2, h1');
         if (heading) {
             heading.classList.add('fade-in');
             observer.observe(heading);
         }
 
-        // Add fade-in to section paragraphs
         const paragraph = section.querySelector('p:not(.web-innertext):not(.skill-name)');
         if (paragraph) {
             paragraph.classList.add('fade-in');
             observer.observe(paragraph);
         }
 
-        // Add staggered animations to child elements
         if (section.id === 'first-section') {
             const firstText = section.querySelector('.first-text');
             const tim = section.querySelector('.tim');
@@ -246,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (section.id === 'testimonials') {
-            const items = section.querySelectorAll('.testimonial-card');
+            const items = document.querySelectorAll('.testimonial-card');
             items.forEach((item, index) => {
                 item.classList.add('fade-in');
                 item.style.transitionDelay = `${index * 0.2}s`;
@@ -281,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Apply animation to footer
     const footer = document.querySelector('.footer');
     if (footer) {
         const footerSections = footer.querySelectorAll('.footer-section');
@@ -290,5 +308,43 @@ document.addEventListener('DOMContentLoaded', () => {
             section.style.transitionDelay = `${index * 0.2}s`;
             observer.observe(section);
         });
+    }
+
+    // New Part: Counter Animation for Skills
+    function animateCounter(element, targetPercent) {
+        let currentPercent = 0;
+        const increment = targetPercent / 100;
+        const interval = setInterval(() => {
+            if (currentPercent >= targetPercent) {
+                clearInterval(interval);
+                element.textContent = `${targetPercent}%`;
+            } else {
+                currentPercent += increment;
+                element.textContent = `${Math.round(currentPercent)}%`;
+            }
+        }, 20);
+    }
+
+    // Watch when the skills section comes into view
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                skillPercents.forEach((percent) => {
+                    const targetPercent = parseInt(percent.getAttribute('data-percent'), 10);
+                    if (!percent.classList.contains('animated')) {
+                        animateCounter(percent, targetPercent);
+                        percent.classList.add('animated');
+                    }
+                });
+                skillsObserver.unobserve(skillsSection);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.3
+    });
+
+    if (skillsSection) {
+        skillsObserver.observe(skillsSection);
     }
 });
