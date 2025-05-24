@@ -83,35 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('active');
 
             const filter = button.getAttribute('data-filter');
-
-            // Clear current content
-            websiteShowcase.innerHTML = '';
-
-            // Dynamically add content based on filter
-            if (filter === 'all') {
-                // Restore original portfolio items
-                portfolioItems.forEach(item => {
-                    websiteShowcase.appendChild(item.cloneNode(true));
-                });
-            } else if (filter === 'web') {
-                // Show Web image (using existing project image)
-                const webDiv = document.createElement('div');
-                webDiv.className = 'portfolio-item web';
-                webDiv.innerHTML = '<img src="./images/Screenshot 2025-02-15 140414.png" alt="Web Project">';
-                websiteShowcase.appendChild(webDiv);
-            } else if (filter === 'design') {
-                // Show Design image (using existing project image)
-                const designDiv = document.createElement('div');
-                designDiv.className = 'portfolio-item design';
-                designDiv.innerHTML = '<img src="./images/Screenshot 2025-04-30 155353.png" alt="Design Project">';
-                websiteShowcase.appendChild(designDiv);
-            } else if (filter === 'app') {
-                // Show App image (using existing project image)
-                const appDiv = document.createElement('div');
-                appDiv.className = 'portfolio-item app';
-                appDiv.innerHTML = '<img src="./images/default.png" alt="App Project">';
-                websiteShowcase.appendChild(appDiv);
-            }
+            portfolioItems.forEach(item => {
+                if (filter === 'all') {
+                    item.style.display = '';
+                } else if (item.classList.contains(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         });
     });
 
@@ -160,9 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Download CV
     document.querySelector('#download').addEventListener('click', () => {
         const link = document.createElement('a');
-        link.href = './cv/timothy_cv.pdf';
-        link.download = 'Timothy_CV.pdf';
+        link.href = './images/Blue and Gray Simple Web Developer Resume_20250524_102045_0000.pdf';
+        link.download = 'MY CV For Website Developer.pdf';
+         document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
     });
 
     // Smooth Scroll with Animation for Navbar Links
