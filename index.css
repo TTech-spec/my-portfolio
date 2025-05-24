@@ -429,6 +429,14 @@ nav a {
     left: 100%;
 }
 
+@media (max-width: 768px) {
+    #hire {
+        padding: 20px 20px;
+        min-height: 56px;
+        font-size: 18px;
+    }
+}
+
 /* Hero Section */
 #first-section {
     position: relative;
@@ -2006,5 +2014,23 @@ hr {
 
     .contact-icon i {
         font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-section {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    .footer-text {
+        text-align: left !important;
+    }
+    .contact-info {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    .contact-info li {
+        justify-content: flex-start !important;
+        text-align: left !important;
     }
 }
