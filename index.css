@@ -1747,6 +1747,26 @@ hr {
 
 @media (max-width: 768px) {
     nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-toggle {
+        margin-left: auto;
+        margin-right: 0;
+        order: 2;
+    }
+    .logos {
+        order: 1;
+    }
+    .content {
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
         padding: 15px 3%;
         z-index: 1100;
     }
