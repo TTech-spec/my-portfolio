@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // WhatsApp Button
     document.querySelector('#hire').addEventListener('click', () => {
-        const phoneNumber = '+234 8147061837';
+        const phoneNumber = '+234 9135764677';
         const message = encodeURIComponent('Hello, I’d like to hire you!');
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     });
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Download CV
     document.querySelector('#download').addEventListener('click', () => {
         const link = document.createElement('a');
-        link.href = './images/Blue and Gray Simple Web Developer Resume_20250524_102045_0000.pdf';
+        link.href = './images/Daniel CV of Web developer.pdf';
         link.download = 'MY CV For Website Developer.pdf';
          document.body.appendChild(link);
         link.click();

@@ -236,6 +236,25 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+#toggleMode {
+    margin-left: auto;
+    order: 3;
+}
+
+.nav-toggle {
+    order: 2;
+}
+
+.logos {
+    order: 1;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 15px 5%;
     position: fixed;
     top: 0;
@@ -1030,7 +1049,7 @@ hr {
     flex-direction: column;
     height: 100%;
     transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid var(--border-color);
+    border: 1
 }
 
 .testimonial-card:hover {
@@ -1748,20 +1767,18 @@ hr {
 @media (max-width: 768px) {
     nav {
         display: flex;
-        flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
+    #toggleMode {
+        margin-left: 10px;
+        order: 3;
+    }
     .nav-toggle {
-        margin-left: auto;
-        margin-right: 0;
         order: 2;
     }
     .logos {
         order: 1;
-    }
-    .content {
-        order: 3;
     }
 }
 
@@ -1914,22 +1931,28 @@ hr {
         max-width: 150px;
     }
 
-    .social-icon {
-        width: 36px;
-        height: 36px;
+    .content #toggleMode {
+        width: auto;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: none;
+        color: var(--text-light);
+        border-radius: 0;
+        border: none;
+        font-size: 24px;
+        padding: 0;
+        box-shadow: none;
+        cursor: pointer;
+        transition: color 0.3s;
     }
-
-    .social-icon i {
-        font-size: 16px;
-    }
-
-    .contact-icon {
-        width: 36px;
-        height: 36px;
-    }
-
-    .contact-icon i {
-        font-size: 14px;
+    .content #toggleMode:hover {
+        color: var(--primary-light);
+        background: none;
+        box-shadow: none;
+        transform: none;
     }
 }
 
