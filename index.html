@@ -1,289 +1,568 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="./index.js" defer></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Adekola Timothy - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #00f5a0;
+            --secondary-color: #00bfff;
+            --accent-color: #9f00ff;
+            --background-dark: #0a0a14;
+            --background-light: #101022;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--background-dark);
+            color: #e5e7eb;
+        }
+        .hero-3d-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .hero-carousel {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            animation: rotate-carousel 20s infinite linear;
+        }
+        @keyframes rotate-carousel {
+            from { transform: translate(-50%, -50%) rotateY(0deg); }
+            to { transform: translate(-50%, -50%) rotateY(360deg); }
+        }
+        .carousel-item {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 245, 160, 0.3);
+            backface-visibility: hidden;
+        }
+        .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
+        .carousel-item:nth-child(2) { transform: rotateY(72deg) translateZ(250px); }
+        .carousel-item:nth-child(3) { transform: rotateY(144deg) translateZ(250px); }
+        .carousel-item:nth-child(4) { transform: rotateY(216deg) translateZ(250px); }
+        .carousel-item:nth-child(5) { transform: rotateY(288deg) translateZ(250px); }
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: var(--secondary-color);
+            border-radius: 30%;
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            transform: rotate(45deg);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-50px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(50px) rotate(270deg); }
+        }
+        .animated-text {
+            opacity: 0;
+            transform: translateY(100px);
+            animation: reveal-text 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+        .animated-text-2 { animation-delay: 0.3s; }
+        .animated-button { animation-delay: 0.6s; }
+        @keyframes reveal-text {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .text-glow {
+            text-shadow: 0 0 8px var(--primary-color), 0 0 20px var(--secondary-color);
+        }
+        .button-glow {
+            box-shadow: 0 0 15px -3px var(--primary-color), 0 0 30px -10px var(--primary-color);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .work-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .work-card:hover {
+            transform: translateY(-10px);
+        }
+        .work-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        .work-card:hover::before {
+            left: 100%;
+        }
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+    </style>
 </head>
-<body>
-    <div class="cyber-loader">
-        <div class="cyber-spinner">
-            <div class="core"></div>
-            <div class="ring"></div>
-            <div class="glow"></div>
-            <div class="dots">
-                <div class="dot pulse-1"></div>
-                <div class="dot pulse-2"></div>
-                <div class="dot pulse-3"></div>
+<body class="bg-background-dark text-gray-200">
+    <div class="relative min-h-screen">
+        <header class="fixed top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-sm transition-all duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <a class="text-2xl font-bold text-white text-glow" href="#">AT.</a>
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#about">About</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#skills">Skills</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#services">Services</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#work">Work</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#blog">Blog</a>
+                        <a class="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all duration-300" href="#contact">Contact</a>
+                    </nav>
+                    <button class="md:hidden text-gray-300 hover:text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="loading-text">Loading...</div>
+        </header>
+
+        <main>
+            <!-- Enhanced Hero Section with 3D Carousel -->
+            <section class="hero-3d-container bg-gradient-to-br from-background-dark via-background-light to-background-dark">
+                <div class="floating-shapes">
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                </div>
+                <div class="hero-carousel">
+                    <div class="carousel-item">💻</div>
+                    <div class="carousel-item">🚀</div>
+                    <div class="carousel-item">⚡</div>
+                    <div class="carousel-item">🎨</div>
+                    <div class="carousel-item">🔥</div>
+                </div>
+                <div class="relative z-10 flex min-h-screen flex-col items-center justify-center p-4 text-center">
+                    <h1 class="animated-text text-5xl font-bold text-white md:text-7xl text-glow">Adekola Timothy</h1>
+                    <p class="animated-text animated-text-2 mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">Software Engineer & Creative Technologist | Building Tomorrow's Web, Today.</p>
+                    <a class="animated-text animated-button mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#about">
+                        <span>Discover More</span>
+                        <span class="material-symbols-outlined ml-2">arrow_downward</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="py-20 sm:py-32 bg-background-light" id="about">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] rounded-xl -rotate-3 transition-transform group-hover:rotate-0 duration-500 blur-md opacity-50"></div>
+                            <img alt="Adekola Timothy" class="relative rounded-xl shadow-2xl w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGtaYOLr0-BY3LiKH2aJXWjiw3LXwbbGN0TcyzijyZ56UqNq-rLSi9_CYOVKUpx-Iq701iHbewOo29-IsrPLTI4znugoFvE_tTJ9I01f9J4PJmp3Uw4mLhytpIqXHqic8sKsYUUsPekfVLU5zDpy_ZAW0e298on9jn59gHQbrd7MdqC-8Zoh46N352ictUJXuPh8VPvZbWH3pfsGIn04f0DYxzmV10-GFcdk5JIz5BpCFW8y79VZFkcy7UVEYtD7mPGAHLFVplQrNa"/>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white"><span class="gradient-text">About Me</span></h2>
+                            <p class="text-lg text-gray-300 mb-6">
+                                I'm Adekola Timothy, a passionate and results-driven Software Engineer with a knack for transforming complex problems into elegant, high-performance digital solutions. My journey in technology is fueled by a relentless curiosity and a desire to craft experiences that are not only functional but also intuitive and engaging.
+                            </p>
+                            <p class="text-lg text-gray-300">
+                                Beyond the code, I'm a strategic thinker and a collaborative team player. I believe the best products are born from a fusion of creative vision and technical excellence. Let's connect and build something extraordinary together.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="py-20 sm:py-32 bg-background-dark" id="skills">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white"><span class="gradient-text">Technical Skills</span></h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="JavaScript" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsPclacVL2y_ao6nLVbpE0C_yxZJikMoYNTizM7cZExxF90AnaM8WNUhfwA7Dwi2_0iUOq4-Z5425RohJaXJetyRa4TROfzT6y7IbrMAFmUFqRhnk0sAEFRfwD4V8yveeq9hh5h-add3Ye10wW8iKY971GSz07ZKEn8pIzXugSAx6HR1KG72YDiGCcvvwtwtX-SkniSaz0kLUlkTqqM9J_yuMsIQ4_EgYuV4ns5it7_9QA8tMFvygb3e2WaYcowrIyhHgQe8egc9Ts"/>
+                            <span class="font-medium">JavaScript</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="React" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Vcm2RbaXAtU0wuw1seL2t9gd1TlTNcKLqhrO15YVecNGW6uVMF4O7K5OJPrD5qKIZ0M3GgC92YO_rANZvutOAn993JLzqhDH6HObDjLKSaSAtJDMW14hbtsDFoAaz5QS6otdGrcoKv-STkr-xrxiOWZcbL95X4g4831YU9twIwJEkodRVisPIeWLINYjBkaO595Mlgynx_tdOAE89jNSH6b5PUyz8ODv6tNXuRBDwarWzcgp9o0sibe0QKbvIq_t0k_wziHy_uXd"/>
+                            <span class="font-medium">React</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="Node.js" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV_HccAlkbffEqWqkiwn82PXMeAznOh846Ee41-6SewybzO9DscWRMsayU_no2wyrk7cyZ3CG8LFDjX1m1XtmcZy_go5UMR6qTDK-ghTbYDo-vh5QQRzarugOGPq25VdRc2dvBHG2D8abtdaSwJ1VBnlpB9p-lN9F_p3QhuyBF9DOj2vQzfWAZ9jo0yBt_4lI432NZ7jiW391-n_zClw4jR4epAMr1kjkuKqix5z6j29MsZI4ZlF4a47BVc2X7SXVi33avcNfU7yB5"/>
+                            <span class="font-medium">Node.js</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="Python" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ0RHDSRa4mRSDffcAoGYZDX8niTuXwYQgFYk0YwO4X7ci06E3Z7105sOc21VQpwqv9xeiqMBPFhkOFHSPsPJBFSW4HgIwGIBe2OVirnc6vSa7eEvp--ZDSSfurVycBpZg_oZ4ft7sfg6pVBS5oIgvsWaFg_klSdd00I1gI6prOjiTZh1jfgCmoyThWv3IkVjr5ysX48yM0d8OSfHNFu3JIYQv_IVbiAdXK2FQGe9A3eA4u_vZP5WijoNz5eme8JIK2yxSBr5oGL_O"/>
+                            <span class="font-medium">Python</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="Docker" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmrd7s7TVJaYuIa_3Jfw21GF8xPRmyQ9l1p_TGK9TFQcw0cvWdte60jKSiPYb2xJKOxdaLLW5k9FdMVUG-5j6TrVQoGSix6qWgYYYxKHHJxSGWFROUFUS6KUrW-QHmt8n4_MvPFybkm9yvUXCAQtooVaNXvWMQfs30tLAdjKSWiutknLzBVRtgQtqmqVAAImIvJpeEmy3GBAjFe_iYTmSHEsA5OuadKMbXPyj2rVr2_pU-Yo75gnlJuBH-FZKJw7XGIi9nrUTcq9A"/>
+                            <span class="font-medium">Docker</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                            <img alt="AWS" class="w-16 h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwtllsuOSmlsLNY6QJz8Y1-4Bz-f-XSs-_503RLPNl-9O46Ip-aQ7YP1aWyIFvebBYAeGyxze_DxZufne-44u7bc6caJ4bvntCGOqh4wTGiMj97yHmfGfQ8_zoJR_ckIGCxdJFD-hyIDl4RGnuDVI3-OSuSXpU68RuU4WI5Lbf1HSSSXlzgqKPrx-HCpi48rCZOFzVWxBA9wohFmW88AVv9MsTNMQaniPZ4TI0F2H-EZxgnc41kis_D8N9F5hI3-gXCG-3a-Of454T"/>
+                            <span class="font-medium">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="py-20 sm:py-32 bg-background-light" id="services">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white"><span class="gradient-text">What I Do</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--primary-color)] transition-all duration-300 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--primary-color)] transition-all duration-500 group-hover:w-full"></div>
+                            <span class="material-symbols-outlined text-4xl text-[var(--primary-color)] mb-4">terminal</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">Web Development</h3>
+                            <p class="text-gray-300">Creating responsive, high-performance websites and web applications from scratch using modern technologies.</p>
+                        </div>
+                        <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--secondary-color)] transition-all duration-300 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--secondary-color)] transition-all duration-500 group-hover:w-full"></div>
+                            <span class="material-symbols-outlined text-4xl text-[var(--secondary-color)] mb-4">cloud_sync</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">API & Backend Systems</h3>
+                            <p class="text-gray-300">Designing and building secure, scalable RESTful APIs and backend services to power your applications.</p>
+                        </div>
+                        <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--accent-color)] transition-all duration-300 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--accent-color)] transition-all duration-500 group-hover:w-full"></div>
+                            <span class="material-symbols-outlined text-4xl text-[var(--accent-color)] mb-4">grouped_bar_chart</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">DevOps & Automation</h3>
+                            <p class="text-gray-300">Implementing CI/CD pipelines and cloud infrastructure to streamline development and ensure reliability.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Work Section -->
+            <section class="py-20 sm:py-32 bg-background-dark" id="work">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white"><span class="gradient-text">Recent Work</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="work-card bg-background-light rounded-xl overflow-hidden border border-gray-800 hover:border-[var(--primary-color)] transition-all duration-500">
+                            <div class="h-48 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] flex items-center justify-center">
+                                <span class="text-6xl">🚀</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-white">E-Commerce Platform</h3>
+                                <p class="text-gray-300 mb-4">A full-stack e-commerce solution with real-time inventory management and payment integration.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-[var(--primary-color)]/20 text-[var(--primary-color)] rounded-full text-sm">React</span>
+                                    <span class="px-3 py-1 bg-[var(--secondary-color)]/20 text-[var(--secondary-color)] rounded-full text-sm">Node.js</span>
+                                    <span class="px-3 py-1 bg-[var(--accent-color)]/20 text-[var(--accent-color)] rounded-full text-sm">MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-card bg-background-light rounded-xl overflow-hidden border border-gray-800 hover:border-[var(--secondary-color)] transition-all duration-500">
+                            <div class="h-48 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--accent-color)] flex items-center justify-center">
+                                <span class="text-6xl">📊</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-white">Analytics Dashboard</h3>
+                                <p class="text-gray-300 mb-4">Real-time data visualization platform with interactive charts and customizable reports.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-[var(--secondary-color)]/20 text-[var(--secondary-color)] rounded-full text-sm">D3.js</span>
+                                    <span class="px-3 py-1 bg-[var(--accent-color)]/20 text-[var(--accent-color)] rounded-full text-sm">Python</span>
+                                    <span class="px-3 py-1 bg-[var(--primary-color)]/20 text-[var(--primary-color)] rounded-full text-sm">AWS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="work-card bg-background-light rounded-xl overflow-hidden border border-gray-800 hover:border-[var(--accent-color)] transition-all duration-500">
+                            <div class="h-48 bg-gradient-to-br from-[var(--accent-color)] to-[var(--primary-color)] flex items-center justify-center">
+                                <span class="text-6xl">🤖</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-white">AI Chatbot</h3>
+                                <p class="text-gray-300 mb-4">Intelligent conversational AI with natural language processing and context awareness.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-[var(--accent-color)]/20 text-[var(--accent-color)] rounded-full text-sm">TensorFlow</span>
+                                    <span class="px-3 py-1 bg-[var(--primary-color)]/20 text-[var(--primary-color)] rounded-full text-sm">Python</span>
+                                    <span class="px-3 py-1 bg-[var(--secondary-color)]/20 text-[var(--secondary-color)] rounded-full text-sm">FastAPI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Section with API Integration -->
+            <section class="py-20 sm:py-32 bg-background-light" id="blog">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white"><span class="gradient-text">Latest Tech News</span></h2>
+                    <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Loading State -->
+                        <div class="col-span-full flex justify-center items-center py-12">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="py-20 sm:py-32 bg-background-dark" id="contact">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white"><span class="gradient-text">Let's Build Together</span></h2>
+                        <p class="mt-4 text-lg text-gray-300">Have a project in mind or just want to say hello? I'd love to hear from you. Drop me a line and let's start a conversation.</p>
+                        <a class="mt-8 inline-block rounded-lg bg-[var(--primary-color)] px-8 py-4 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="mailto:contact@adekolatimothy.com">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enhanced Footer -->
+            <footer class="relative bg-gradient-to-b from-background-dark to-[#050508] text-gray-400">
+                <div class="footer-wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" style="fill: var(--background-dark);"></path>
+                    </svg>
+                </div>
+                <div class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                        <!-- Brand Column -->
+                        <div class="md:col-span-1">
+                            <h3 class="text-2xl font-bold text-white text-glow mb-4">AT.</h3>
+                            <p class="text-gray-400 mb-6">Building innovative solutions for the digital world.</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-[var(--primary-color)]/10 hover:bg-[var(--primary-color)]/20 flex items-center justify-center text-[var(--primary-color)]">
+                                    <span class="material-symbols-outlined text-xl">code</span>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-[var(--secondary-color)]/10 hover:bg-[var(--secondary-color)]/20 flex items-center justify-center text-[var(--secondary-color)]">
+                                    <span class="material-symbols-outlined text-xl">work</span>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-[var(--accent-color)]/10 hover:bg-[var(--accent-color)]/20 flex items-center justify-center text-[var(--accent-color)]">
+                                    <span class="material-symbols-outlined text-xl">chat</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Links -->
+                        <div>
+                            <h4 class="text-white font-bold mb-4 text-lg">Quick Links</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#about" class="hover:text-[var(--primary-color)] transition-colors duration-300">About Me</a></li>
+                                <li><a href="#skills" class="hover:text-[var(--primary-color)] transition-colors duration-300">Skills</a></li>
+                                <li><a href="#services" class="hover:text-[var(--primary-color)] transition-colors duration-300">Services</a></li>
+                                <li><a href="#work" class="hover:text-[var(--primary-color)] transition-colors duration-300">Recent Work</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Services -->
+                        <div>
+                            <h4 class="text-white font-bold mb-4 text-lg">Services</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="hover:text-[var(--secondary-color)] transition-colors duration-300">Web Development</a></li>
+                                <li><a href="#" class="hover:text-[var(--secondary-color)] transition-colors duration-300">Mobile Apps</a></li>
+                                <li><a href="#" class="hover:text-[var(--secondary-color)] transition-colors duration-300">API Development</a></li>
+                                <li><a href="#" class="hover:text-[var(--secondary-color)] transition-colors duration-300">Cloud Solutions</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div>
+                            <h4 class="text-white font-bold mb-4 text-lg">Get In Touch</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="material-symbols-outlined text-[var(--accent-color)] mr-2">mail</span>
+                                    <a href="mailto:contact@adekolatimothy.com" class="hover:text-[var(--accent-color)] transition-colors duration-300">contact@adekolatimothy.com</a>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-symbols-outlined text-[var(--accent-color)] mr-2">location_on</span>
+                                    <span>Lagos, Nigeria</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-symbols-outlined text-[var(--accent-color)] mr-2">schedule</span>
+                                    <span>Mon - Fri: 9AM - 6PM</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Bar -->
+                    <div class="border-t border-gray-800 pt-8">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <p class="text-sm text-gray-500 mb-4 md:mb-0">© 2024 Adekola Timothy. All Rights Reserved.</p>
+                            <div class="flex space-x-6">
+                                <a href="#" class="text-sm hover:text-white transition-colors duration-300">Privacy Policy</a>
+                                <a href="#" class="text-sm hover:text-white transition-colors duration-300">Terms of Service</a>
+                                <a href="#" class="text-sm hover:text-white transition-colors duration-300">Cookie Policy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
     </div>
 
-    <nav>
-    <img src="./images/ld.jpg" alt="Logo" class="logos">
-    
-    <div class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <ul class="content">
-        <li><a href="#first-section">Home</a></li>
-        <li><a href="#second">Services</a></li>
-        <li><a href="#works">Works</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact-form-section">Contact</a></li>
-        <button id="hire" style="color:white">Hire Me</button>
-        <span id="toggleMode"><i class="fas fa-adjust"></i></span> <!-- Move here -->
-    </ul>
-    </nav>
-    <div class="overlay"></div>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
 
-    <section id="first-section">
-        <div class="floating-circle circle-1"></div>
-        <div class="floating-circle circle-2"></div>
-        <div class="floating-circle circle-3"></div>
-        <div class="hello-text">Hello</div>
-        <div class="flex-contanier">
-            <div class="first-text">
-                <h1 id="timothy">Hi, I’m Daniel</h1>
-                <h2 id="next">A Web Developer & Designer</h2>
-                <p id="first-p">I create stunning websites and designs with a focus on performance and user experience. Let’s build something amazing together!</p>
-                <button id="download">Download CV <i class="fas fa-download"></i></button>
-            </div>
-            <div class="tim">
-                <img src="./images/dannny.jpg" alt="Timothy">
-              
-            </div>
-        </div>
-    </section>
-
-    <section id="second">
-        <center><h2 class="quality">Quality Services</h2></center>
-        <center><p class="quality-p">I offer a range of services to help bring your digital ideas to life with cutting-edge technology and creativity.</p></center>
-        <div class="web">
-            <p class="web-innertext">Web Development</p>
-            <i class="fas fa-laptop-code"></i>
-        </div>
-        <div class="web">
-            <p class="web-innertext">Logo Design</p>
-            <i class="fas fa-paint-brush"></i>
-        </div>
-        <div class="web">
-            <p class="web-innertext">Mobile Apps</p>
-            <i class="fas fa-mobile-alt"></i>
-        </div>
-     
-        <hr>
-    </section>
-
-    <section id="works">
-        <center><h1 class="Recent">Recent Works</h1></center>
-        <center><p class="Recent-p">Check out some of my latest projects that showcase my skills and creativity.</p></center>
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="app">App</button>
-            <button class="filter-btn" data-filter="logo">logo</button>
-  
-        </div>
-
-        <div class="website-showcase">
-            <div class="portfolio-item web">
-                <img src="./images/Screenshot 2025-05-16 164943.png" alt="Project 1">
-            </div>
-            <div class="portfolio-item app">
-                <img src="./images/Screenshots/Screenshot 2025-05-30 083302.png" alt="Project 2">
-            </div>
-            <div class="portfolio-item logo">
-                <img src="./images//IMG-20250524-WA0178.jpg" alt="Project 3">
-            </div>
-            <div  class="portfolio-item logo" app>
-                <img src="./images/IMG-20250524-WA0179.jpg" alt="project 4">
-            </div>
-            <div class="portfolio-item web">
-                <img src="./images/Screenshot 2025-05-24 111739.png" alt="project 5">
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="skills-section">
-        <h2 class="skills">My Skills</h2>
-        <p class="inspires">What inspires me to create amazing digital experiences every day.</p>
-        <div id="skills-container">
-            <div class="skill-box">
-                <div class="skill-logo"><img src="./images/html.png" alt="HTML"></div>
-                <div class="skill-percent" data-percent="95">0%</div>
-                <div class="skill-name">HTML</div>
-            </div>
-            <div class="skill-box">
-                <div class="skill-logo"><img src="./images/css-3.png" alt="CSS"></div>
-                <div class="skill-percent" data-percent="90">0%</div>
-                <div class="skill-name">CSS</div>
-            </div>
-            <div class="skill-box">
-                <div class="skill-logo"><img src="./images/technology.png" alt="JavaScript"></div>
-                <div class="skill-percent" data-percent="82">0%</div>
-                <div class="skill-name">JavaScript</div>
-            </div>
-            <div class="skill-box">
-                <div class="skill-logo"><img src="./images/atom.png" alt="React"></div>
-                <div class="skill-percent" data-percent="75">0%</div>
-                <div class="skill-name">React</div>
-            </div>
-            <div class="skill-box">
-                <div class="skill-logo"><img src="./images/logo-design.png" alt="Node.js"></div>
-                <div class="skill-percent" data-percent="80">0%</div>
-                <div class="skill-name">graphics design</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials">
-        <div class="container">
-            <h2 class="section-heading">Testimonials</h2>
-            <p class="section-subheading">What my clients say about my work.</p>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="company-logo">Tech</div>
-                        <img src="./images/tim.jpg" alt="Client 1" class="client-image">
+        // Fetch blog posts from MediaStack API
+        async function fetchBlogPosts() {
+            const API_KEY = 'acc0dd3521278957c0f3bb7a1966ee75';
+            const API_URL = `http://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=technology&limit=6&languages=en`;
+            
+            const blogContainer = document.getElementById('blog-container');
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data.data && data.data.length > 0) {
+                    blogContainer.innerHTML = '';
+                    
+                    data.data.forEach((article, index) => {
+                        const colors = ['var(--primary-color)', 'var(--secondary-color)', 'var(--accent-color)'];
+                        const color = colors[index % 3];
+                        
+                        const articleCard = `
+                            <div class="bg-background-dark rounded-xl overflow-hidden border border-gray-800 hover:border-[${color}] transition-colors duration-300 group">
+                                <img alt="${article.title || 'Blog Post'}" 
+                                     class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
+                                     src="${article.image || 'https://via.placeholder.com/400x300?text=Tech+News'}"
+                                     onerror="this.src='https://via.placeholder.com/400x300?text=Tech+News'"/>
+                                <div class="p-6">
+                                    <p class="text-sm text-gray-400">${new Date(article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                    <h3 class="text-xl font-bold mt-2 mb-3 text-white line-clamp-2">${article.title}</h3>
+                                    <p class="text-gray-300 mb-4 line-clamp-3">${article.description || 'Read the latest technology news and insights.'}</p>
+                                    <a class="font-medium hover:underline" style="color: ${color}" href="${article.url}" target="_blank" rel="noopener noreferrer">
+                                        Read More →
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        blogContainer.innerHTML += articleCard;
+                    });
+                } else {
+                    blogContainer.innerHTML = '<div class="col-span-full text-center text-gray-400">No articles available at the moment.</div>';
+                }
+            } catch (error) {
+                console.error('Error fetching blog posts:', error);
+                blogContainer.innerHTML = `
+                    <div class="col-span-full text-center">
+                        <p class="text-gray-400 mb-4">Unable to load latest news. Please try again later.</p>
+                        <button onclick="fetchBlogPosts()" class="px-6 py-2 bg-[var(--primary-color)] text-background-dark rounded-lg hover:bg-opacity-80 transition-all duration-300">
+                            Retry
+                        </button>
                     </div>
-                    <i class="fas fa-quote-left quote-icon"></i>
-                    <p class="testimonial-text">Daniel delivered an outstanding website that exceeded our expectations. Highly recommend!</p>
-                    <div class="client-name">Adekola Timothy</div>
-                    <div class="client-position">CEO, Real Estate</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="company-logo">DesignHub</div>
-                        <img src="./images/Sterling K_ Brown Shares His _There Can Be Only One_ Theory of Black Actor Representation on TV.jpeg" alt="Client 2" class="client-image">
-                    </div>
-                    <i class="fas fa-quote-left quote-icon"></i>
-                    <p class="testimonial-text">Simpl delivered a fantastic logo! Clean, memorable, and perfectly captured our brand essence. Highly recommend</p>
-                    <div class="client-name">Donald Nwgboso</div>
-                    <div class="client-position">Creative Director, DesignHub</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="company-logo">AppDev</div>
-                        <img src="./images/hope.jpg" alt="Client 3" class="client-image">
-                    </div>
-                    <i class="fas fa-quote-left quote-icon"></i>
-                    <p class="testimonial-text">Tim’s SEO skills boosted our traffic significantly. Amazing service!</p>
-                    <div class="client-name">Amazing Hope</div>
-                    <div class="client-position">Marketing Lead, AppDev</div>
-                </div>
-            </div>
-        </div>
-    </section>
+                `;
+            }
+        }
 
-    <section id="contact-form-section">
-        <div class="floating-circle circle-contact-1"></div>
-        <div class="floating-circle circle-contact-2"></div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <div class="contact-details">
-                        <h3>Phone</h3>
-                        <p>+234 9135764677</p>
-                    </div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p>kreshline22@gmail.com</p>
-                    </div>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="contact-details">
-                        <h3>Location</h3>
-                        <p>NIGERIA, Lagos State </p>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <form id="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                        <div class="input-focus-effect"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                        <div class="input-focus-effect"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <div class="input-focus-effect"></div>
-                </div>
-                <button type="submit" id="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
-            </form>
-        </div>
-    </section>
+        // Load blog posts on page load
+        fetchBlogPosts();
 
-    <footer class="footer">
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3 class="footer-heading">About Me</h3>
-                <p class="footer-text">Passionate web developer and designer creating innovative digital solutions.</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-section   Quick">
-                <h3 class="footer-heading">Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#first-section">Home</a></li>
-                    <li><a href="#second">Services</a></li>
-                    <li><a href="#works">Works</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact-form-section">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3 class="footer-heading">Contact</h3>
-                <ul class="contact-info">
-                    <li> +234 9135764677</li>
-                    <li> kreshline22@gmail.com</li>
-                    <li> NIGERIA, Lagos State</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3 class="footer-heading">Newsletter</h3>
-                <p class="footer-text">Stay updated with my latest projects!</p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your Email" required>
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Daniel. All rights reserved.</p>
-        </div>
-    </footer>
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(40px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
