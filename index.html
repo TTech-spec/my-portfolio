@@ -22,123 +22,226 @@
             background-color: var(--background-dark);
             color: #e5e7eb;
         }
-        .hero-3d-container {
+
+        /* Hero Carousel Styles */
+        .hero-carousel-container {
             position: relative;
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            perspective: 1000px;
         }
-        .hero-carousel {
+
+        .carousel-slide {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            top: 50%;
-            left: 50%;
-            transform-style: preserve-3d;
-            animation: rotate-carousel 20s infinite linear;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
         }
-        @keyframes rotate-carousel {
-            from { transform: translate(-50%, -50%) rotateY(0deg); }
-            to { transform: translate(-50%, -50%) rotateY(360deg); }
+
+        .carousel-slide.active {
+            opacity: 1;
         }
-        .carousel-item {
+
+        .carousel-slide::before {
+            content: '';
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 10, 20, 0.85) 0%, rgba(16, 16, 34, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 10px 40px rgba(0, 245, 160, 0.3);
-            backface-visibility: hidden;
+            text-align: center;
+            padding: 2rem;
         }
-        .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
-        .carousel-item:nth-child(2) { transform: rotateY(72deg) translateZ(250px); }
-        .carousel-item:nth-child(3) { transform: rotateY(144deg) translateZ(250px); }
-        .carousel-item:nth-child(4) { transform: rotateY(216deg) translateZ(250px); }
-        .carousel-item:nth-child(5) { transform: rotateY(288deg) translateZ(250px); }
-        .floating-shapes {
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .carousel-indicator {
+            width: 3rem;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-indicator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .carousel-indicator.active::before {
+            width: 100%;
+            animation: progress 5s linear;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .floating-particles {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             pointer-events: none;
+            z-index: 5;
         }
-        .shape {
+
+        .particle {
             position: absolute;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-        .shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
+            width: 4px;
+            height: 4px;
             background: var(--primary-color);
             border-radius: 50%;
-            top: 20%;
+            opacity: 0;
+            animation: float-particle 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
             left: 10%;
             animation-delay: 0s;
         }
-        .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: var(--secondary-color);
-            border-radius: 30%;
-            top: 60%;
-            right: 15%;
-            animation-delay: 5s;
-        }
-        .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: var(--accent-color);
-            transform: rotate(45deg);
-            bottom: 20%;
+
+        .particle:nth-child(2) {
             left: 20%;
-            animation-delay: 10s;
+            animation-delay: 2s;
+            background: var(--secondary-color);
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-50px) rotate(90deg); }
-            50% { transform: translateY(0) rotate(180deg); }
-            75% { transform: translateY(50px) rotate(270deg); }
+
+        .particle:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
         }
+
+        .particle:nth-child(4) {
+            left: 40%;
+            animation-delay: 1s;
+            background: var(--accent-color);
+        }
+
+        .particle:nth-child(5) {
+            left: 50%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(6) {
+            left: 60%;
+            animation-delay: 5s;
+            background: var(--secondary-color);
+        }
+
+        .particle:nth-child(7) {
+            left: 70%;
+            animation-delay: 2.5s;
+        }
+
+        .particle:nth-child(8) {
+            left: 80%;
+            animation-delay: 4.5s;
+            background: var(--accent-color);
+        }
+
+        .particle:nth-child(9) {
+            left: 90%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
         .animated-text {
             opacity: 0;
             transform: translateY(100px);
             animation: reveal-text 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
+
         .animated-text-2 { animation-delay: 0.3s; }
         .animated-button { animation-delay: 0.6s; }
+
         @keyframes reveal-text {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         .text-glow {
-            text-shadow: 0 0 8px var(--primary-color), 0 0 20px var(--secondary-color);
+            text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--secondary-color);
         }
+
         .button-glow {
-            box-shadow: 0 0 15px -3px var(--primary-color), 0 0 30px -10px var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color), 0 0 40px rgba(0, 245, 160, 0.3);
         }
+
         .gradient-text {
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .work-card {
             position: relative;
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
+
         .work-card:hover {
             transform: translateY(-10px);
         }
+
         .work-card::before {
             content: '';
             position: absolute;
@@ -149,9 +252,11 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             transition: left 0.5s;
         }
+
         .work-card:hover::before {
             left: 100%;
         }
+
         .loading-spinner {
             border: 3px solid rgba(255, 255, 255, 0.1);
             border-top: 3px solid var(--primary-color);
@@ -160,10 +265,12 @@
             height: 40px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         .footer-wave {
             position: absolute;
             top: -100px;
@@ -172,17 +279,57 @@
             overflow: hidden;
             line-height: 0;
         }
+
         .footer-wave svg {
             position: relative;
             display: block;
             width: calc(100% + 1.3px);
             height: 100px;
         }
+
         .social-icon {
             transition: all 0.3s ease;
         }
+
         .social-icon:hover {
             transform: translateY(-5px) scale(1.1);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .hero-carousel-container:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0, 245, 160, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .carousel-nav.prev {
+            left: 2rem;
+        }
+
+        .carousel-nav.next {
+            right: 2rem;
         }
     </style>
 </head>
@@ -208,27 +355,88 @@
         </header>
 
         <main>
-            <!-- Enhanced Hero Section with 3D Carousel -->
-            <section class="hero-3d-container bg-gradient-to-br from-background-dark via-background-light to-background-dark">
-                <div class="floating-shapes">
-                    <div class="shape"></div>
-                    <div class="shape"></div>
-                    <div class="shape"></div>
+            <!-- Enhanced Hero Section with Image Carousel -->
+            <section class="hero-carousel-container">
+                <!-- Floating Particles -->
+                <div class="floating-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
                 </div>
-                <div class="hero-carousel">
-                    <div class="carousel-item">💻</div>
-                    <div class="carousel-item">🚀</div>
-                    <div class="carousel-item">⚡</div>
-                    <div class="carousel-item">🎨</div>
-                    <div class="carousel-item">🔥</div>
+
+                <!-- Carousel Slides -->
+                <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1 class="animated-text text-5xl font-bold text-white md:text-7xl text-glow">Adekola Timothy</h1>
+                        <p class="animated-text animated-text-2 mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">
+                            Software Engineer & Creative Technologist | Building Tomorrow's Web, Today.
+                        </p>
+                        <a class="animated-text animated-button mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#about">
+                            <span>Discover More</span>
+                            <span class="material-symbols-outlined ml-2">arrow_downward</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="relative z-10 flex min-h-screen flex-col items-center justify-center p-4 text-center">
-                    <h1 class="animated-text text-5xl font-bold text-white md:text-7xl text-glow">Adekola Timothy</h1>
-                    <p class="animated-text animated-text-2 mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">Software Engineer & Creative Technologist | Building Tomorrow's Web, Today.</p>
-                    <a class="animated-text animated-button mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#about">
-                        <span>Discover More</span>
-                        <span class="material-symbols-outlined ml-2">arrow_downward</span>
-                    </a>
+
+                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1 class="text-5xl font-bold text-white md:text-7xl text-glow">Crafting Digital Excellence</h1>
+                        <p class="mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">
+                            Transforming ideas into elegant, scalable solutions that drive innovation.
+                        </p>
+                        <a class="mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#work">
+                            <span>View My Work</span>
+                            <span class="material-symbols-outlined ml-2">code</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1 class="text-5xl font-bold text-white md:text-7xl text-glow">Full-Stack Innovation</h1>
+                        <p class="mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">
+                            From concept to deployment, delivering end-to-end solutions with precision.
+                        </p>
+                        <a class="mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#services">
+                            <span>Explore Services</span>
+                            <span class="material-symbols-outlined ml-2">rocket_launch</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');">
+                    <div class="carousel-content">
+                        <h1 class="text-5xl font-bold text-white md:text-7xl text-glow">Let's Build Together</h1>
+                        <p class="mt-4 max-w-3xl text-lg text-gray-200 md:text-xl">
+                            Ready to bring your vision to life? Let's create something amazing.
+                        </p>
+                        <a class="mt-8 flex min-w-[84px] items-center justify-center rounded-lg bg-[var(--primary-color)] px-6 py-3.5 text-base font-bold text-background-dark transition-all duration-300 ease-in-out hover:bg-opacity-80 focus:outline-none focus:ring-4 focus:ring-primary-color/50 button-glow" href="#contact">
+                            <span>Get In Touch</span>
+                            <span class="material-symbols-outlined ml-2">mail</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="carousel-nav prev" onclick="changeSlide(-1)">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </div>
+                <div class="carousel-nav next" onclick="changeSlide(1)">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
+                    <div class="carousel-indicator" onclick="goToSlide(1)"></div>
+                    <div class="carousel-indicator" onclick="goToSlide(2)"></div>
+                    <div class="carousel-indicator" onclick="goToSlide(3)"></div>
                 </div>
             </section>
 
@@ -238,7 +446,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div class="relative group">
                             <div class="absolute inset-0 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--accent-color)] rounded-xl -rotate-3 transition-transform group-hover:rotate-0 duration-500 blur-md opacity-50"></div>
-                            <img alt="Adekola Timothy" class="relative rounded-xl shadow-2xl w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGtaYOLr0-BY3LiKH2aJXWjiw3LXwbbGN0TcyzijyZ56UqNq-rLSi9_CYOVKUpx-Iq701iHbewOo29-IsrPLTI4znugoFvE_tTJ9I01f9J4PJmp3Uw4mLhytpIqXHqic8sKsYUUsPekfVLU5zDpy_ZAW0e298on9jn59gHQbrd7MdqC-8Zoh46N352ictUJXuPh8VPvZbWH3pfsGIn04f0DYxzmV10-GFcdk5JIz5BpCFW8y79VZFkcy7UVEYtD7mPGAHLFVplQrNa"/>
+                            <img alt="Adekola Timothy" class="relative rounded-xl shadow-2xl w-full h-auto" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80"/>
                         </div>
                         <div>
                             <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white"><span class="gradient-text">About Me</span></h2>
@@ -293,21 +501,21 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--primary-color)] transition-all duration-300 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--primary-color)] transition-all duration-500 group-hover:w-full"></div>
-                            <span class="material-symbols-outlined text-4xl text-[var(--primary-color)] mb-4">terminal</span>
-                            <h3 class="text-xl font-bold mb-2 text-white">Web Development</h3>
-                            <p class="text-gray-300">Creating responsive, high-performance websites and web applications from scratch using modern technologies.</p>
+                            <span class="material-symbols-outlined text-4xl text-[var(--primary-color)] mb-4">code</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">Frontend Development</h3>
+                            <p class="text-gray-300">Building pixel-perfect, responsive user interfaces with React, Vue, and modern JavaScript frameworks. Creating seamless user experiences with attention to detail and performance optimization.</p>
                         </div>
                         <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--secondary-color)] transition-all duration-300 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--secondary-color)] transition-all duration-500 group-hover:w-full"></div>
-                            <span class="material-symbols-outlined text-4xl text-[var(--secondary-color)] mb-4">cloud_sync</span>
-                            <h3 class="text-xl font-bold mb-2 text-white">API & Backend Systems</h3>
-                            <p class="text-gray-300">Designing and building secure, scalable RESTful APIs and backend services to power your applications.</p>
+                            <span class="material-symbols-outlined text-4xl text-[var(--secondary-color)] mb-4">palette</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">UI/UX Design Implementation</h3>
+                            <p class="text-gray-300">Transforming design mockups into interactive, accessible web applications. Expert in CSS animations, Tailwind, and modern design systems to bring creative visions to life.</p>
                         </div>
                         <div class="bg-background-dark/50 p-8 rounded-xl border border-transparent hover:border-[var(--accent-color)] transition-all duration-300 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 h-1 w-0 bg-[var(--accent-color)] transition-all duration-500 group-hover:w-full"></div>
-                            <span class="material-symbols-outlined text-4xl text-[var(--accent-color)] mb-4">grouped_bar_chart</span>
-                            <h3 class="text-xl font-bold mb-2 text-white">DevOps & Automation</h3>
-                            <p class="text-gray-300">Implementing CI/CD pipelines and cloud infrastructure to streamline development and ensure reliability.</p>
+                            <span class="material-symbols-outlined text-4xl text-[var(--accent-color)] mb-4">speed</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">Performance Optimization</h3>
+                            <p class="text-gray-300">Optimizing web applications for lightning-fast load times and smooth interactions. Implementing code splitting, lazy loading, and best practices for optimal user experience.</p>
                         </div>
                     </div>
                 </div>
@@ -369,7 +577,6 @@
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-white"><span class="gradient-text">Latest Tech News</span></h2>
                     <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Loading State -->
                         <div class="col-span-full flex justify-center items-center py-12">
                             <div class="loading-spinner"></div>
                         </div>
@@ -399,7 +606,6 @@
                 </div>
                 <div class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                        <!-- Brand Column -->
                         <div class="md:col-span-1">
                             <h3 class="text-2xl font-bold text-white text-glow mb-4">AT.</h3>
                             <p class="text-gray-400 mb-6">Building innovative solutions for the digital world.</p>
@@ -415,8 +621,6 @@
                                 </a>
                             </div>
                         </div>
-                        
-                        <!-- Quick Links -->
                         <div>
                             <h4 class="text-white font-bold mb-4 text-lg">Quick Links</h4>
                             <ul class="space-y-2">
@@ -426,8 +630,6 @@
                                 <li><a href="#work" class="hover:text-[var(--primary-color)] transition-colors duration-300">Recent Work</a></li>
                             </ul>
                         </div>
-
-                        <!-- Services -->
                         <div>
                             <h4 class="text-white font-bold mb-4 text-lg">Services</h4>
                             <ul class="space-y-2">
@@ -437,8 +639,6 @@
                                 <li><a href="#" class="hover:text-[var(--secondary-color)] transition-colors duration-300">Cloud Solutions</a></li>
                             </ul>
                         </div>
-
-                        <!-- Contact Info -->
                         <div>
                             <h4 class="text-white font-bold mb-4 text-lg">Get In Touch</h4>
                             <ul class="space-y-3">
@@ -457,8 +657,6 @@
                             </ul>
                         </div>
                     </div>
-
-                    <!-- Bottom Bar -->
                     <div class="border-t border-gray-800 pt-8">
                         <div class="flex flex-col md:flex-row justify-between items-center">
                             <p class="text-sm text-gray-500 mb-4 md:mb-0">© 2024 Adekola Timothy. All Rights Reserved.</p>
@@ -475,7 +673,55 @@
     </div>
 
     <script>
-        // Smooth scroll
+        let currentSlide = 0;
+        let autoSlideInterval;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        startAutoSlide();
+
+        document.querySelector('.hero-carousel-container').addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        document.querySelector('.hero-carousel-container').addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -486,11 +732,9 @@
             });
         });
 
-        // Fetch blog posts from MediaStack API
         async function fetchBlogPosts() {
             const API_KEY = 'acc0dd3521278957c0f3bb7a1966ee75';
             const API_URL = `http://api.mediastack.com/v1/news?access_key=${API_KEY}&categories=technology&limit=6&languages=en`;
-            
             const blogContainer = document.getElementById('blog-container');
             
             try {
@@ -499,28 +743,20 @@
                 
                 if (data.data && data.data.length > 0) {
                     blogContainer.innerHTML = '';
-                    
                     data.data.forEach((article, index) => {
                         const colors = ['var(--primary-color)', 'var(--secondary-color)', 'var(--accent-color)'];
                         const color = colors[index % 3];
-                        
                         const articleCard = `
                             <div class="bg-background-dark rounded-xl overflow-hidden border border-gray-800 hover:border-[${color}] transition-colors duration-300 group">
-                                <img alt="${article.title || 'Blog Post'}" 
-                                     class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-                                     src="${article.image || 'https://via.placeholder.com/400x300?text=Tech+News'}"
-                                     onerror="this.src='https://via.placeholder.com/400x300?text=Tech+News'"/>
+                                <img alt="${article.title || 'Blog Post'}" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" src="${article.image || 'https://via.placeholder.com/400x300?text=Tech+News'}" onerror="this.src='https://via.placeholder.com/400x300?text=Tech+News'"/>
                                 <div class="p-6">
                                     <p class="text-sm text-gray-400">${new Date(article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                     <h3 class="text-xl font-bold mt-2 mb-3 text-white line-clamp-2">${article.title}</h3>
                                     <p class="text-gray-300 mb-4 line-clamp-3">${article.description || 'Read the latest technology news and insights.'}</p>
-                                    <a class="font-medium hover:underline" style="color: ${color}" href="${article.url}" target="_blank" rel="noopener noreferrer">
-                                        Read More →
-                                    </a>
+                                    <a class="font-medium hover:underline" style="color: ${color}" href="${article.url}" target="_blank" rel="noopener noreferrer">Read More →</a>
                                 </div>
                             </div>
                         `;
-                        
                         blogContainer.innerHTML += articleCard;
                     });
                 } else {
@@ -531,18 +767,14 @@
                 blogContainer.innerHTML = `
                     <div class="col-span-full text-center">
                         <p class="text-gray-400 mb-4">Unable to load latest news. Please try again later.</p>
-                        <button onclick="fetchBlogPosts()" class="px-6 py-2 bg-[var(--primary-color)] text-background-dark rounded-lg hover:bg-opacity-80 transition-all duration-300">
-                            Retry
-                        </button>
+                        <button onclick="fetchBlogPosts()" class="px-6 py-2 bg-[var(--primary-color)] text-background-dark rounded-lg hover:bg-opacity-80 transition-all duration-300">Retry</button>
                     </div>
                 `;
             }
         }
 
-        // Load blog posts on page load
         fetchBlogPosts();
 
-        // Add scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
